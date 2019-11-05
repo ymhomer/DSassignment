@@ -15,6 +15,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
@@ -186,10 +187,18 @@ public class GUI extends javax.swing.JFrame {
                  FileNameExtensionFilter filter = new FileNameExtensionFilter("Text file","txt");
                          chooser.setFileFilter(filter);
                          chooser.setDialogTitle("Open");
-        int returnVal = chooser.showOpenDialog(null);   
-        File file = chooser.getSelectedFile();
+        int returnVal = chooser.showOpenDialog(null);  
+         File file =null;
+        try
+        {
+            file = chooser.getSelectedFile();   
+            jtpFileName.setText(file.getName());
+        }
+        catch(Exception e){
+            
+            infoBox("error: file not found \n Please select a file to read from ", "File not found");
+        }
         
-        jtpFileName.setText(file.getName());
         Scanner s = null;
         try {
             s = new Scanner(file); //Read the selected file content
@@ -217,10 +226,19 @@ public class GUI extends javax.swing.JFrame {
                          chooser.setFileFilter(filter);
                           chooser.setDialogTitle("Save output as");
         int returnVal = chooser.showOpenDialog(null);   
-        File file = new File(chooser.getSelectedFile()+".txt");
-        jtpFileName.setText(file.getName());
-        String line = jtpContent.getText();
+        File file =null;
+        try{
+           
+       file  = chooser.getSelectedFile();
         
+        }
+        catch(Exception e){
+            infoBox("error: file not found \n Please select a file to write to", "File not found");
+        }
+        String line = jtpContent.getText();
+        if(!file.getName().contains(".txt")){
+            file  = new File(chooser.getSelectedFile()+".txt");
+        }
         FileWriter x = null;
         System.out.print(line);
         try {
@@ -242,6 +260,10 @@ public class GUI extends javax.swing.JFrame {
         }
         
   }
+      public static void infoBox(String infoMessage, String titleBar)
+    {
+        JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
+    }
     /**
      * @param args the command line arguments
      */
