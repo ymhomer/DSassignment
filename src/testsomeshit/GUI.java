@@ -11,6 +11,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +26,7 @@ import javax.swing.filechooser.FileSystemView;
  * @author user
  */
 public class GUI extends javax.swing.JFrame {
-
+    static ArrayList<String> stringArray = new ArrayList<>();
     /**
      * Creates new form GUI
      */
@@ -211,7 +213,19 @@ public class GUI extends javax.swing.JFrame {
         jtpContent.setContentType("text/plain");
 
         jtpContent.setText(line);
-
+             line = line.replaceAll("\\W", " ");//replaces all nonwords into blanks
+        String[] x = line.split("(\\b)");//split by non word characters and word boundries
+      
+       
+         
+         for(int y = 0 ; y  < x.length ;y++){
+          x[y]=x[y].trim();
+       }
+        stringArray.addAll(Arrays.asList(x));
+       //put in search arrays 
+        
+                   
+        
     }
 
     private void SaveOutput() {
