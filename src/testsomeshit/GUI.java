@@ -158,11 +158,11 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-  
+
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         OpenFile();
-            
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jSaveContentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveContentActionPerformed
@@ -179,65 +179,59 @@ public class GUI extends javax.swing.JFrame {
         SaveOutput();
         // TODO add your handling code here:
     }//GEN-LAST:event_jbSaveFileActionPerformed
-  private void OpenFile() {
+    private void OpenFile() {
         // TODO add your handling code here:
-                     JFileChooser chooser = new JFileChooser("NetBeansProjects");
-                   
-             
-                 FileNameExtensionFilter filter = new FileNameExtensionFilter("Text file","txt");
-                         chooser.setFileFilter(filter);
-                         chooser.setDialogTitle("Open");
-        int returnVal = chooser.showOpenDialog(null);  
-         File file =null;
-        try
-        {
-            file = chooser.getSelectedFile();   
+        JFileChooser chooser = new JFileChooser("NetBeansProjects");
+
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Text file", "txt");
+        chooser.setFileFilter(filter);
+        chooser.setDialogTitle("Open");
+        int returnVal = chooser.showOpenDialog(null);
+        File file = null;
+        try {
+            file = chooser.getSelectedFile();
             jtpFileName.setText(file.getName());
-        }
-        catch(Exception e){
-            
+        } catch (Exception e) {
+
             infoBox("error: file not found \n Please select a file to read from ", "File not found");
         }
-        
+
         Scanner s = null;
         try {
             s = new Scanner(file); //Read the selected file content
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-            String line="";
-              while (s.hasNextLine()){
-                  
-                  line += s.nextLine()+"\n";
-              } 
-             
-                  
-            jtpContent.setContentType("text/plain");
-            
-                jtpContent.setText(line);
-           
-            
-    }
-  private void SaveOutput(){
-                                   JFileChooser chooser = new JFileChooser();
-                   
-             
-                 FileNameExtensionFilter filter = new FileNameExtensionFilter("Text file","txt");
-                         chooser.setFileFilter(filter);
-                          chooser.setDialogTitle("Save output as");
-        int returnVal = chooser.showOpenDialog(null);   
-        File file =null;
-        try{
-           
-       file  = chooser.getSelectedFile();
-        
+        String line = "";
+        while (s.hasNextLine()) {
+
+            line += s.nextLine() + "\n";
         }
-        catch(Exception e){
+
+        jtpContent.setContentType("text/plain");
+
+        jtpContent.setText(line);
+
+    }
+
+    private void SaveOutput() {
+        JFileChooser chooser = new JFileChooser();
+
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Text file", "txt");
+        chooser.setFileFilter(filter);
+        chooser.setDialogTitle("Save output as");
+        int returnVal = chooser.showOpenDialog(null);
+        File file = null;
+        try {
+
+            file = chooser.getSelectedFile();
+
+        } catch (Exception e) {
             infoBox("error: file not found \n Please select a file to write to", "File not found");
         }
         String line = jtpContent.getText();
-        if(!file.getName().contains(".txt")){
-            file  = new File(chooser.getSelectedFile()+".txt");
+        if (!file.getName().contains(".txt")) {
+            file = new File(chooser.getSelectedFile() + ".txt");
         }
         FileWriter x = null;
         System.out.print(line);
@@ -250,24 +244,25 @@ public class GUI extends javax.swing.JFrame {
             x.write(line);
         } catch (IOException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-           
-        }finally{
-                                 try {
-                                     x.close();
-                                 } catch (IOException ex) {
-                                     Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-                                 }
+
+        } finally {
+            try {
+                x.close();
+            } catch (IOException ex) {
+                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        
-  }
-      public static void infoBox(String infoMessage, String titleBar)
-    {
+
+    }
+
+    public static void infoBox(String infoMessage, String titleBar) {
         JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
     }
+
     /**
      * @param args the command line arguments
      */
-  
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
