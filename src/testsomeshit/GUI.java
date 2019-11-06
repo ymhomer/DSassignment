@@ -26,7 +26,9 @@ import javax.swing.filechooser.FileSystemView;
  * @author user
  */
 public class GUI extends javax.swing.JFrame {
+
     static ArrayList<String> stringArray = new ArrayList<>();
+
     /**
      * Creates new form GUI
      */
@@ -213,19 +215,15 @@ public class GUI extends javax.swing.JFrame {
         jtpContent.setContentType("text/plain");
 
         jtpContent.setText(line);
-             line = line.replaceAll("\\W", " ");//replaces all nonwords into blanks
+        line = line.replaceAll("\\W", " ");//replaces all nonwords into blanks
         String[] x = line.split("(\\b)");//split by non word characters and word boundries
-      
-       
-         
-         for(int y = 0 ; y  < x.length ;y++){
-          x[y]=x[y].trim();
-       }
-        stringArray.addAll(Arrays.asList(x));
+
+        for (int y = 0; y < x.length; y++) {
+            x[y] = x[y].trim();
+        }
+        
        //put in search arrays 
-        
-                   
-        
+
     }
 
     private void SaveOutput() {
@@ -253,12 +251,6 @@ public class GUI extends javax.swing.JFrame {
             x = new FileWriter(file);
         } catch (IOException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            x.write(line);
-        } catch (IOException ex) {
-            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-
         } finally {
             try {
                 x.close();
@@ -267,7 +259,14 @@ public class GUI extends javax.swing.JFrame {
             }
         }
 
+        try {
+            x.write(line);
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
     }
+    
 
     public static void infoBox(String infoMessage, String titleBar) {
         JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
@@ -276,7 +275,6 @@ public class GUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
