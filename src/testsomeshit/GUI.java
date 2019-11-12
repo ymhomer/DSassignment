@@ -28,7 +28,7 @@ import javax.swing.filechooser.FileSystemView;
 public class GUI extends javax.swing.JFrame {
 
     static ArrayList<String> stringArray = new ArrayList<>();
-
+    //replace this arrayList with custom arry list
     /**
      * Creates new form GUI
      */
