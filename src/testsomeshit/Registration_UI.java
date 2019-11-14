@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import static testsomeshit.Testsomeshit.userdata;
 /**
  *
- * @author ongchunheng
+ * @author wongchanghong
  */
 public class Registration_UI extends javax.swing.JFrame {
 
@@ -120,19 +120,7 @@ public class Registration_UI extends javax.swing.JFrame {
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
         
-//        String username = txtUsername.getText();
-//        String password = txtPassword.getText();
-//        
-//        User u = new User(username,password);
-//        
-//        userdata.add(u);
-//        
-//        JOptionPane.showMessageDialog(null,"Successfully registered!");
-//        
-//        Login_UI l = new Login_UI();
-//        l.setVisible(true);
-//        
-//        this.setVisible(false);
+
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     /**
